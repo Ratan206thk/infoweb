@@ -1,54 +1,56 @@
 <?php
 
-$dbhost = 'localhost';
-$dbuser = 'root';
-$dbpass = '';
-$dbname = 'teach';
+// $dbhost = 'localhost';
+// $dbuser = 'root';
+// $dbpass = '';
+// $dbname = 'teach';
 
-$accept = false;
-$dbconnection = mysqli_connect($dbhost,$dbuser, $dbpass, $dbname);
+// $accept = false;
+// $dbconnection = mysqli_connect($dbhost,$dbuser, $dbpass, $dbname);
     
  ?><?php
- if($_POST)
-{
-    $sqlquery = "INSERT INTO `$dbname`.`users` (`username`, `useremail`, `number`, `password`) VALUES ('{$_POST['name']}', '{$_POST['email']}', '{$_POST['number']}', '" . password_hash($_POST['password'], PASSWORD_DEFAULT) . "');";
-    $data;$row;
+//  if($_POST)
+// {
+//     $sqlquery = "INSERT INTO `$dbname`.`users` (`username`, `useremail`, `number`, `password`) VALUES ('{$_POST['name']}', '{$_POST['email']}', '{$_POST['number']}', '" . password_hash($_POST['password'], PASSWORD_DEFAULT) . "');";
+//     $data;$row;
 
-    if($dbconnection -> query($sqlquery) === true){
-        $accept = true;    
-        $sqlquery = "SELECT `userid` FROM `users` WHERE `username` = '{$_POST['name']}';";
-        $data = $dbconnection -> query($sqlquery);
-        $row = $data ->fetch_assoc();
+//     if($dbconnection -> query($sqlquery) === true){
+//         $accept = true;    
+//         $sqlquery = "SELECT `userid` FROM `users` WHERE `username` = '{$_POST['name']}';";
+//         $data = $dbconnection -> query($sqlquery);
+//         $row = $data ->fetch_assoc();
 
-        setcookie("useremail", "{$_POST['email']}", time() + (86400 * 30), "/");
-        setcookie("userpass", "{$_POST['password']}", time() + (86400 * 30), "/");
-        setcookie("userid", "{$row['userid']}", time() + (86400 * 30), "/");
+//         setcookie("useremail", "{$_POST['email']}", time() + (86400 * 30), "/");
+//         setcookie("userpass", "{$_POST['password']}", time() + (86400 * 30), "/");
+//         setcookie("userid", "{$row['userid']}", time() + (86400 * 30), "/");
 
-        #DURING PRODUCTION CHANGE ABOVE TO ->
-        #setcookie("username", "{$_POST['username']}", time() + (86400 * 30), "/" , 'domainname.com' , false , true);
+//         #DURING PRODUCTION CHANGE ABOVE TO ->
+//         #setcookie("username", "{$_POST['username']}", time() + (86400 * 30), "/" , 'domainname.com' , false , true);
         
-    }else{
-        $error = $dbconnection -> error;
-        if(strpos($error , 'username'))
-        {
-            echo "<script>alert('username already taken.');</script>";
-        }elseif(strpos($error , 'email'))
-        {
-            echo "<script>alert('email already taken.');</script>";
-        }
-    }
+//     }else{
+//         $error = $dbconnection -> error;
+//         if(strpos($error , 'username'))
+//         {
+//             echo "<script>alert('username already taken.');</script>";
+//         }elseif(strpos($error , 'email'))
+//         {
+//             echo "<script>alert('email already taken.');</script>";
+//         }
+//     }
 
     
-    if($accept)
-    {
-        mysqli_close($dbconnection);
-        header("Location: ../home.php" . "?userid={$row['userid']}");
-    }
-}
-//"?id={$row['userid']}
+//     if($accept)
+//     {
+//         mysqli_close($dbconnection);
+//         header("Location: ../home.php" . "?userid={$row['userid']}");
+//     }
+// }
+// //"?id={$row['userid']}
 ?>
 
-<?php mysqli_close($dbconnection); ?>
+<?php 
+// mysqli_close($dbconnection); 
+?>
 
 
 
