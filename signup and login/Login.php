@@ -1,45 +1,45 @@
 <?php
 
-$dbhost = 'localhost';
-$dbuser = 'root';
-$dbpass = '';
-$dbname = 'teach';
+// $dbhost = 'localhost';
+// $dbuser = 'root';
+// $dbpass = '';
+// $dbname = 'teach';
 
-$dbconnection = mysqli_connect($dbhost,$dbuser, $dbpass, $dbname);
-$accept=false;
-    // if(!(isset($_GET['userid'])))
-    // {
-    //     header("Location: homepage/homepage.php");
-    // }
+// $dbconnection = mysqli_connect($dbhost,$dbuser, $dbpass, $dbname);
+// $accept=false;
+//     // if(!(isset($_GET['userid'])))
+//     // {
+//     //     header("Location: homepage/homepage.php");
+//     // }
  ?><?php
-if($_POST)
-{
-    $sqlquery = "SELECT * FROM `users` WHERE `useremail` = '{$_POST['name']}';";
-    $data = $dbconnection -> query($sqlquery);
-    if($data -> num_rows <= 0){
-        echo "<script>alert('invalid email');</script>";
-        exit;
-    }
+// if($_POST)
+// {
+//     $sqlquery = "SELECT * FROM `users` WHERE `useremail` = '{$_POST['name']}';";
+//     $data = $dbconnection -> query($sqlquery);
+//     if($data -> num_rows <= 0){
+//         echo "<script>alert('invalid email');</script>";
+//         exit;
+//     }
     
-    $row = $data -> fetch_assoc();
+//     $row = $data -> fetch_assoc();
 
-    setcookie("useremail", "{$row['useremail']}", time() + (86400 * 30), "/");
-    setcookie("userpass", "{$_POST['password']}", time() + (86400 * 30), "/");
-    setcookie("userid", "{$row['userid']}", time() + (86400 * 30), "/");
+//     setcookie("useremail", "{$row['useremail']}", time() + (86400 * 30), "/");
+//     setcookie("userpass", "{$_POST['password']}", time() + (86400 * 30), "/");
+//     setcookie("userid", "{$row['userid']}", time() + (86400 * 30), "/");
 
-    if(password_verify($_POST['password'],$row['password']))
-        {
-        $accept = true;
-    }else{
-        echo "<script>alert('invalid password');</script>";
-    }
-    if($accept)
-    {
-        mysqli_close($dbconnection);
-            header("Location: ../home.php" . "?userid={$row['userid']}");
-    }
-    mysqli_close($dbconnection);
-}
+//     if(password_verify($_POST['password'],$row['password']))
+//         {
+//         $accept = true;
+//     }else{
+//         echo "<script>alert('invalid password');</script>";
+//     }
+//     if($accept)
+//     {
+//         mysqli_close($dbconnection);
+//             header("Location: ../home.php" . "?userid={$row['userid']}");
+//     }
+//     mysqli_close($dbconnection);
+// }
 ?>
 
 
